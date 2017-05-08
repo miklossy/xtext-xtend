@@ -14,7 +14,7 @@ node {
 		
 		stage 'Gradle Build'
 		try {
-			sh "./gradlew clean cleanGenerateXtext build createLocalMavenRepo -PuseJenkinsSnapshots=true -PcompileXtend=true --refresh-dependencies --continue"
+			sh "./gradlew clean cleanGenerateXtext build createLocalMavenRepo  -PuseJenkinsSnapshots=true -PuseJenkinsSnapshots=true -PcompileXtend=true --refresh-dependencies --continue"
 			archive 'build/maven-repository/**/*.*'
 		} finally {
 			step([$class: 'JUnitResultArchiver', testResults: '**/build/test-results/test/*.xml'])
@@ -41,7 +41,7 @@ node {
 		
 		stage 'Gradle Longrunning Tests'
 		try {
-			sh "./gradlew longrunningTest -PuseJenkinsSnapshots=true --continue"
+			sh "./gradlew longrunningTest -PuseJenkinsSnapshots=true  -PuseJenkinsSnapshots=true --continue"
 		} finally {
 			step([$class: 'JUnitResultArchiver', testResults: '**/build/test-results/longrunningTest/*.xml'])
 		}
