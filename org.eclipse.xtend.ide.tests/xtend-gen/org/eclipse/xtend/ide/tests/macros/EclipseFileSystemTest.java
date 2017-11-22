@@ -10,8 +10,8 @@ package org.eclipse.xtend.ide.tests.macros;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import java.util.Set;
-import org.eclipse.core.internal.resources.ProjectDescription;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.xtend.ide.macro.EclipseFileSystemSupportImpl;
@@ -114,7 +114,7 @@ public class EclipseFileSystemTest extends JavaIoFileSystemTest {
   public void testGetURIForImportedProject() {
     try {
       final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-      final ProjectDescription description = new ProjectDescription();
+      final IProjectDescription description = ResourcesPlugin.getWorkspace().newProjectDescription("bar");
       description.setName("bar");
       description.setLocation(root.getLocation().append("foo/bar"));
       final IProject project = root.getProject("bar");
